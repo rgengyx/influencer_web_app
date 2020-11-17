@@ -7,7 +7,6 @@
 ### Backend
 * Flask
     - Port: 9808
-* SQLAlchemy
 * pymysql
 
 ## DB
