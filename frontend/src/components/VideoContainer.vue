@@ -1,12 +1,9 @@
 <template>
-  <div>
+  <div v-on:mousemove="updateMouseEvent">
     <iframe id="video-container" v-bind:src="url"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
     </iframe>
-<!--    <div id="url">-->
-<!--      {{ url }}-->
-<!--    </div>-->
   </div>
 </template>
 
@@ -28,6 +25,11 @@ export default {
           .then((result) => {
             this.url = Object.values(result.data)[0]
           })
+    },
+    updateMouseEvent(event) {
+      // screenX/Y gives the coordinates relative to the screen in device pixels.
+      // console.log("x video", event.screenX);
+      // console.log("y video", event.screenY);
     }
   }
 

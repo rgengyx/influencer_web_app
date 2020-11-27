@@ -1,4 +1,4 @@
-from db import conn
+from mysqldb import conn
 
 
 def load_video():

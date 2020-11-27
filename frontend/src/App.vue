@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-on:mousemove="hover" v-on:mousedown="click">
     <VideoContainer/>
   </div>
 </template>
@@ -11,6 +11,44 @@ export default {
   name: 'App',
   components: {
     VideoContainer
+  },
+  methods: {
+    hover(event) {
+      // screenX/Y gives the coordinates relative to the screen in device pixels.
+      var screenX = event.screenX;
+      var screenY = event.screenY;
+
+      console.log("hover x", screenX);
+      console.log("hover y", screenY);
+
+      const api = 'http://localhost:9808/mouseEvent'
+
+      this.$http.post(api, {
+        timestamp: Date.now(),
+        screenX: screenX,
+        screenY: screenY,
+        type: "hover"
+      })
+    },
+
+    click(event) {
+      // screenX/Y gives the coordinates relative to the screen in device pixels.
+      var screenX = event.screenX;
+      var screenY = event.screenY;
+
+      console.log("click x", screenX);
+      console.log("click y", screenY);
+
+      const api = 'http://localhost:9808/mouseEvent'
+
+      this.$http.post(api, {
+        timestamp: Date.now(),
+        screenX: screenX,
+        screenY: screenY,
+        type: "click"
+      })
+    }
+
   }
 }
 </script>
@@ -22,6 +60,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background-color: #888888;
+  height: 100vh;
 }
 </style>
