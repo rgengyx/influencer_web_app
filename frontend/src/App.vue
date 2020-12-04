@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-on:mousemove="hover" v-on:mousedown="click">
+  <div id="app" v-on:mousemove="hover" v-on:click="click">
     <VideoContainer/>
   </div>
 </template>
@@ -60,7 +60,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #888888;
   height: 100vh;
 }
 </style>

@@ -1,9 +1,13 @@
 <template>
-  <div v-on:mousemove="updateMouseEvent">
-    <iframe id="video-container" v-bind:src="url"
+  <div id="video-container">
+    <iframe id="video" v-bind:src="url"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
     </iframe>
+    <div id="thumbnail" v-on:click="thumbnailClick(); showThumbnail = true" v-if="!showThumbnail">
+      <img src="../assets/image/thumbnail/food.jpg" />
+      <img id="playbutton" src="../assets/misc/playbutton.svg" />
+    </div>
   </div>
 </template>
 
@@ -12,24 +16,25 @@ export default {
   name: 'VideoContainer',
   data() {
     return {
-      url: null
+      url: null,
+      showThumbnail: false
     }
   },
-  mounted() {
-    this.fetchUrls()
-  },
+
+  // mounted(){
+  //   this.fetchUrls()
+  // },
+
   methods: {
     fetchUrls() {
       const api = 'http://localhost:9808'
       this.$http.get(api)
           .then((result) => {
-            this.url = Object.values(result.data)[0]
+            this.url = Object.values(result.data)[0] + "?autoplay=1&mute=1"
           })
     },
-    updateMouseEvent(event) {
-      // screenX/Y gives the coordinates relative to the screen in device pixels.
-      // console.log("x video", event.screenX);
-      // console.log("y video", event.screenY);
+    thumbnailClick(){
+      this.fetchUrls()
     }
   }
 
@@ -51,7 +56,35 @@ export default {
   maxHeight: 100%;
   overflow: auto;
   backgroundSize: 100%;
-  boxShadow: 20px 10px 20px #888888, -10px -10px 20px #888888;
+  overflow: hidden;
+}
+
+#thumbnail {
+  height: 100%;
+  width: 100%;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+#thumbnail img{
+  width:100%;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+#thumbnail img#playbutton {
+  height: 100%;
+  opacity: 0.8;
+}
+
+#video {
+  height: 100%;
+  width: 100%;
+  right: 0;
+  top: 0;
+  position: absolute;
 }
 
 </style>
