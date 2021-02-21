@@ -1,0 +1,36 @@
+body {
+  font-family: Tahoma, sans-serif;
+}
+
+#experiment-container {
+  width: 800px;
+  height: 500px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  padding: 30px;
+}
+
+#experiment-container h1 {
+  text-align: center;
+  padding: 10px;
+}
+
+#experiment-container input{
+  margin-top: 30px;
+}
+
+#experiment-container input[type=submit]{
+  float: right;
+  margin-right: 50px;
+  margin-top: 100px;
+  background-color: blue;
+  color: white;
+  padding: 12px 20px;
+}

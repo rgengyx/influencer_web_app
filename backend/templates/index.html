@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type= "text/css" href="static/css/main.css">
+    <script src="static/js/jquery-3.5.1.min.js"></script> 
+    <script src="static/js/personal_info.js"></script>
+    <title>Influencer Web Application</title>
+</head>
+<body>
+    <div id="experiment-container">
+        <h1 id="">Amazon Review Experiment</h1>
+        <div id="personal-information">
+            <h3>Personal Information</h3>
+            <form>
+                <label for="age">Age</label>
+                <select id="age"></select><br>
+                
+                <label>Gender</label>
+                <input type="radio" name="gender" id="male"><label for="male">Male</label>
+                <input type="radio" name="gender" id="female"><label for="female">Female</label><br>
+                
+                <label for="use_amazon">Have you ever used Amazon.com to make a purchase?</label>
+                <input type="radio" name="use_amazon" id="use_amazon-yes"><label for="use_amazon-yes">Yes</label>
+                <input type="radio" name="use_amazon" id="use_amazon-no"><label for="use_amazon-no">No</label><br>
+
+                <label>Do you generally read users’ reviews before making a purchase?</label>
+                <input type="radio" name="read_review" id="read_review-yes"><label for="read_review-yes">Yes</label>
+                <input type="radio" name="read_review" id="read_review-no"><label for="read_review-no">No</label><br>
+
+                <input type="submit" id="submitbtn" value="Next">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
