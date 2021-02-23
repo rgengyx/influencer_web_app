@@ -15,14 +15,13 @@ $(function(){
     $("input[name='agreement']").click(function() {
         if($("input[name='agreement']").is(':checked')) {
             console.log("agreement selected")
-
             next_enabled()
         }else{
             next_disabled()
         }
      });
 
-    $('form').on('submit', function(event) {
+    $('form#agreement').on('submit', function(event) {
         event.preventDefault();
         
         var formData = $('form').serializeArray()
