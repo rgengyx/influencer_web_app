@@ -17,8 +17,16 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
-def hello():
+def render_index():
     return render_template('index.html')
+
+@app.route("/description")
+def render_description():
+    return render_template('description.html')
+
+@app.route("/product")
+def render_product():
+    return render_template('product.html')
 
 # API endpoints
 app.register_blueprint(video_api, url_prefix='/api')
