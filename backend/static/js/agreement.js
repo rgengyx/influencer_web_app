@@ -37,7 +37,7 @@ $(function(){
             data: $.param(formData),
             success: function(res) {
                 if(res == "success"){
-                    window.location.href = '/product';
+                    window.location.href = '/product?id=p1';
                 } else {
 
                 }
