@@ -14,9 +14,14 @@ def get_product_by_id():
 @product_api.route('/product/store_rating', methods=['POST'])
 def store_rating():
     rating_dict = request.form.to_dict(flat=False)
-    # print(rating_dict)
+    print(request.form)
     try:
         ProductService.store_rating(rating_dict)
         return "success"
     except KeyError:
         return "failure"
+
+@product_api.route("/product/get_order", methods=['GET'])
+def get_order():
+    combo = request.args.get('combo')
+    return json.dumps(ProductService.get_order(combo))

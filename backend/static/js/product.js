@@ -1,5 +1,8 @@
 $(function(){
 
+    // $("input[name='submitbtn']").prop('disabled', true);
+    // $("input[name='submitbtn']").css('opacity','0.3')
+
     var getUrlParameter = function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
@@ -17,13 +20,25 @@ $(function(){
     };
 
     var productId = getUrlParameter('id')
-    var nextProductId = parseInt(getUrlParameter('id')[1])+1
-    
+    var product_order = JSON.parse(sessionStorage.getItem("product_order"))
+    var nextProductId = null
+    var review_order = null
+
+
+    for(var i =0; i<product_order.length; i++){
+        if (product_order[i][0] == productId){
+            review_order = product_order[i][1]
+        }
+    }
+
+    console.log(review_order)
+
     $.ajax({
         url: "http://localhost:9808/api/product?id="+getUrlParameter('id'),
         type: 'GET',
         dataType: 'json',
         success: function(res) {
+            console.log("res", res)
 
             var verifiedPurchase = function verifiedPurchase(verified){
                 if(verified == 1){
@@ -40,9 +55,22 @@ $(function(){
                     </p>
                 </div>
             `)
+
+            new_res = []
             
-            for(i=0;i<res.length;i++){
-                r = res[i]
+            for(j=0;j<review_order.length;j++){
+                for(i=0;i<res.length;i++){  
+                    if(res[i].reviewType == review_order[j]){
+                        new_res.push(res[i])
+                        break;
+                    }
+                }
+            }
+            
+            console.log("new_res", new_res)
+            
+            for(i=0;i<new_res.length;i++){
+                r = new_res[i]
                 $("#review-container").append(`
                     <div id='review-container-inner'>
                         <img src='static/images/user.jpeg'>
@@ -50,26 +78,29 @@ $(function(){
                         <div id="verified">`+verifiedPurchase(r.verified)+`</div>
                         <div id="review">`+ r.text +`</div>
                         <div id="rating-container">
-                            <div id="rating">
-                                <input type="radio" id="1" name=`+r.reviewType+` value = "Not Helpful At All"><br>
-                                <label>Not Helpful At All</label>
-                            </div>
-                            <div id="rating">
-                                <input type="radio" id="2" name=`+r.reviewType+` value ="Not Very Helpful"><br>
-                                <label>Not Very Helpful</label>
-                            </div>
-                            <div id="rating">
-                                <input type="radio" id="3" name=`+r.reviewType+` value = "Not Sure"><br>
-                                <label>Not Sure</label>
-                            </div>
-                            <div id="rating">
-                                <input type="radio" id="4" name=`+r.reviewType+` value = "Somehow Helpful"><br>
-                                <label>Somehow Helpful</label>
-                            </div>
-                            <div id="rating">
-                                <input type="radio" id="5" name=`+r.reviewType+` value = "Very Helpful"><br>
-                                <label>Very Helpful</label>
-                            </div>                    
+                            <div id="question">Rate helpfulness</div>
+                            <div id='rating-box'>
+                                <div id="rating">
+                                    <input type="radio" id="1" name=`+r.reviewType+` value = "Not Helpful At All"><br>
+                                    <label>Not Helpful At All</label>
+                                </div>
+                                <div id="rating">
+                                    <input type="radio" id="2" name=`+r.reviewType+` value ="Not Very Helpful"><br>
+                                    <label>Not Very Helpful</label>
+                                </div>
+                                <div id="rating">
+                                    <input type="radio" id="3" name=`+r.reviewType+` value = "Not Sure"><br>
+                                    <label>Not Sure</label>
+                                </div>
+                                <div id="rating">
+                                    <input type="radio" id="4" name=`+r.reviewType+` value = "Somehow Helpful"><br>
+                                    <label>Somehow Helpful</label>
+                                </div>
+                                <div id="rating">
+                                    <input type="radio" id="5" name=`+r.reviewType+` value = "Very Helpful"><br>
+                                    <label>Very Helpful</label>
+                                </div>  
+                            </div>                  
                         </div>
                     </div>
                 `)
@@ -81,9 +112,24 @@ $(function(){
         }
     });
 
+
+    // console.log(JSON.parse(sessionStorage.getItem("product_order")))
+
     $('form#review').on('submit', function(event) {
         event.preventDefault();
-        
+    
+        for(var i =0; i<product_order.length; i++){
+            if (product_order[i][0] == productId){
+    
+                if (i == product_order.length - 1){
+                    window.location.href = '/thankyou'
+                }
+                nextProductId = product_order[i+1][0]
+            }
+        }
+
+        console.log(nextProductId)
+
         var formData = $('form').serializeArray()
         var userId = sessionStorage.getItem("userId")
         // var userId = "u1"
@@ -96,22 +142,18 @@ $(function(){
             name: "productId",
             value: productId
         })
-
+        
         $.ajax({
             url: 'http://localhost:9808/api/product/store_rating',
             type: 'POST',
             data: $.param(formData),
             success: function(res) {
-                if(res == "success"){
+                window.location.href = '/product?id='+ nextProductId;
+                // if(res == "success"){
+                //     window.location.href = '/product?id='+ nextProductId;
+                // } else {
 
-                    if (productId == 10){
-                        window.location.href = '/thankyou'
-                    }else{
-                        window.location.href = '/product?id=p'+ nextProductId;
-                    }
-                } else {
-
-                }
+                // }
             },
             error: function(err){
                 console.log("err", err)

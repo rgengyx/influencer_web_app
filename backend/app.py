@@ -25,6 +25,10 @@ def render_index():
 def render_description():
     return render_template('description.html')
 
+@app.route("/instruction")
+def render_instruction():
+    return render_template('instruction.html')
+
 @app.route("/product")
 def render_product():
     return render_template('product.html')

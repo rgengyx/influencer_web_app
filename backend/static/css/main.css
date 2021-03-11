@@ -29,16 +29,17 @@ body {
 input[type=submit]{
   float: right;
   margin-right: 50px;
-  margin-top: 100px;
+  margin-top: 30px;
   background-color: blue;
   color: white;
-  padding: 12px 20px;
+  padding: 12px 30px;
 }
 
 #product-container {
-  width: 60%;
-  margin: 100px auto;
+  width: 80%;
+  margin: 100px 300px;
   height: 500px;
+  border-bottom: 2px solid lightgrey;
 }
 
 #product-container img {
@@ -55,10 +56,10 @@ input[type=submit]{
   margin-top: 200px;
 }
 
-#reviewSection-container {
+form#review {
   width: 60%;
   margin: 20px auto;
-  /* border: 1px solid blue; */
+  margin-bottom: 200px;
 }
 
 #review-container {
@@ -68,44 +69,55 @@ input[type=submit]{
 
 #review-container img {
   width: 40px;
+  margin-right: 6px;
 }
 
 #review-container #user {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 #review-container #verified {
-  font-size: 26px;
-  color: orange;
+  font-size: 16px;
+  color: rgb(218, 89, 14);
   font-weight: bold;
 }
 
 #review-container #review {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 #review-container-inner {
   margin: 10px;
-  padding-bottom: 40px;
-  /* border: 1px solid green; */
+  padding-bottom: 60px;
 }
 
 #rating-container {
-  margin: 20px auto;
+  margin: 20px 0 20px -200px;
   height: 80px;
-  background-color: lightgrey;
+  background-color: rgb(230, 230, 230);
+}
+
+#rating-container #question{
+  float:left;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+#rating-box {
+  margin-left:240px;
+  width: 80%;
 }
 
 #rating{
-  height: 40px;
+  height: 36px;
   float: left;
-  margin: 0 20px;
+  margin: 10px 20px;
   text-align: center;
 }
 
 #rating-container input{
-  margin: 20px;
-  padding: 10px;
+  margin-top: 10px;
+  padding: 20px;
 }
 
 #thankyou-container{

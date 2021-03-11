@@ -14,7 +14,6 @@ $(function(){
     var read_reviewChecked = false
 
     // Check if all inputs are filled
-
     $('#age option').click(function(){
         console.log("age selected")
         ageSelected = true
