@@ -11,7 +11,7 @@ user_api = Blueprint('user_api', __name__)
 def store_userInfo():
     #immutableMultidict
     userData_dict = request.form.to_dict(flat=False)
-    print(userData_dict)
+    print("userData_dict", userData_dict)
     try:
         UserService.store_userInfo(userData_dict)
         return "success"

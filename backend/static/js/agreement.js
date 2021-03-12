@@ -23,29 +23,30 @@ $(function(){
 
     $('form#agreement').on('submit', function(event) {
         event.preventDefault();
+        window.location.href = '/instruction';
         
-        var formData = $('form').serializeArray()
-        var userId = sessionStorage.getItem("userId")
-        formData.push({
-            name: "id",
-            value: userId
-        })
+        // var formData = $('form').serializeArray()
+        // var userId = sessionStorage.getItem("userId")
+        // formData.push({
+        //     name: "id",
+        //     value: userId
+        // })
 
-        $.ajax({
-            url: 'http://localhost:9808/api/user/store_agreement',
-            type: 'POST',
-            data: $.param(formData),
-            success: function(res) {
-                if(res == "success"){
-                    window.location.href = '/instruction';
-                } else {
+        // $.ajax({
+        //     url: 'http://localhost:9808/api/user/store_agreement',
+        //     type: 'POST',
+        //     data: $.param(formData),
+        //     success: function(res) {
+        //         if(res == "success"){
+        //             window.location.href = '/instruction';
+        //         } else {
 
-                }
-            },
-            error: function(err){
-                console.log("err", err)
-            }
-        });
+        //         }
+        //     },
+        //     error: function(err){
+        //         console.log("err", err)
+        //     }
+        // });
     });
 
 })

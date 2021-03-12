@@ -21,8 +21,8 @@ $(function(){
         isAllChecked()
     })
 
-    $("input[name='gender']").click(function() {
-        if($("input[name='gender']").is(':checked')) {
+    $("input[id='gender']").click(function() {
+        if($("input[id='gender']").is(':checked')) {
             console.log("gender selected")
             genderChecked = true
 
@@ -30,8 +30,8 @@ $(function(){
         }
      });
 
-    $("input[name='use_amazon']").click(function() {
-        if($("input[name='use_amazon']").is(':checked')) {
+    $("input[id='use_amazon']").click(function() {
+        if($("input[id='use_amazon']").is(':checked')) {
             console.log("use_amazon selected")
             use_amazonChecked = true
 
@@ -39,8 +39,8 @@ $(function(){
         }
     });
 
-    $("input[name='read_review']").click(function() {
-        if($("input[name='read_review']").is(':checked')) {
+    $("input[id='read_review']").click(function() {
+        if($("input[id='read_review']").is(':checked')) {
             console.log("read_review selected")
             read_reviewChecked = true
 

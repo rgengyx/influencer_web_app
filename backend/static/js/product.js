@@ -1,7 +1,7 @@
 $(function(){
 
-    // $("input[name='submitbtn']").prop('disabled', true);
-    // $("input[name='submitbtn']").css('opacity','0.3')
+    $("input[name='submitbtn']").prop('disabled', true);
+    $("input[name='submitbtn']").css('opacity','0.3')
 
     var getUrlParameter = function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
@@ -104,6 +104,64 @@ $(function(){
                         </div>
                     </div>
                 `)
+            }
+
+            var r1 = false
+            var r2 = false
+            var r3 = false
+            var r4 = false
+            var r5 = false
+            var r6 = false
+
+            // Check if all inputs are filled
+            $('input[name="r1"]').click(function(){
+                console.log("r1")
+                r1 = true
+
+                isAllChecked()
+            })
+
+            $('input[name="r2"]').click(function(){
+                console.log("r2")
+                r2 = true
+
+                isAllChecked()
+            })
+
+            $('input[name="r3"]').click(function(){
+                console.log("r3")
+                r3 = true
+
+                isAllChecked()
+            })
+
+            $('input[name="r4"]').click(function(){
+                console.log("r4")
+                r4 = true
+
+                isAllChecked()
+            })
+
+            $('input[name="r5"]').click(function(){
+                console.log("r5")
+                r5 = true
+
+                isAllChecked()
+            })
+
+            $('input[name="r6"]').click(function(){
+                console.log("r6")
+                r6 = true
+
+                isAllChecked()
+            })
+
+            function isAllChecked(){
+                if(r1 && r2 && r3 && r4 && r5 && r6){
+                    console.log("All Checked")
+                    $("input[name='submitbtn']").prop('disabled', false);
+                    $("input[name='submitbtn']").css('opacity','1')
+                }
             }
 
         },
